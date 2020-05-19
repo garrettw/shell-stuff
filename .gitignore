@@ -1,0 +1,7 @@
+*
+!.bash_profile
+!.bashrc
+!.gitattributes
+!.gitignore
+!.profile
+!.zshrc
