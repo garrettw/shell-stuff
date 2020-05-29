@@ -29,7 +29,16 @@ case "$TERM" in
     xterm-256color) color_prompt=yes;;
 esac
 
-PS1="\[$(tput setaf 1)\]\u\[$(tput sgr0)\]@\[$(tput setaf 2)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]\w\[$(tput sgr0)\]\n\$ "
+function gitsegment() {
+    cmdout="$(git branch --show-current 2> /dev/null)"
+    if [ -n "$cmdout" ]; then
+        echo "- on $(tput setaf 3)$cmdout$(tput sgr0)"
+    else
+        echo ""
+    fi
+}
+
+PS1="\[$(tput setaf 1)\]\u\[$(tput sgr0)\]@\[$(tput setaf 2)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]\w\[$(tput sgr0)\] "'$(gitsegment)'"\n\$ "
 
 alias cg='cd $(git rev-parse --show-toplevel)'
 alias l='ls -FG'
@@ -75,4 +84,6 @@ function rdcd() {
 [ -f ~/.drush/drush.prompt.sh ] && source ~/.drush/drush.prompt.sh
 
 
-[ -f ~/Sites/Encore-Dev-Scripts/bash_completion ] && source ~/Sites/Encore-Dev-Scripts/bash_completion
+# Added by Encore-Dev-Scripts
+[ -f /Users/garrett/Sites/Encore-Dev-Scripts/completion.bash ] && source /Users/garrett/Sites/Encore-Dev-Scripts/completion.bash
+
