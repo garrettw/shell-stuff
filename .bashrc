@@ -40,32 +40,8 @@ function gitsegment() {
 
 PS1="\[$(tput setaf 1)\]\u\[$(tput sgr0)\]@\[$(tput setaf 2)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]\w\[$(tput sgr0)\] "'$(gitsegment)'"\n\$ "
 
-alias cg='cd $(git rev-parse --show-toplevel)'
-alias l='ls -FG'
-alias l1='ls -FG1'
-alias ls='ls -FG'
-alias ll='ls -Glh'
-alias md='mkdir'
-alias rd='rmdir'
-
-function cl() {
-  DIR="$*";
-  # if no DIR given, go home
-  if [ $# -lt 1 ]; then
-    DIR=$HOME;
-  fi;
-  cd "${DIR}" && ls -FG
-}
-
-function mdcd() {
-  mkdir "$1" && cd "$1" || return
-}
-
-function rdcd() {
-  cd .. && rmdir "$PWD"
-}
-
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_aliases.local ] && source ~/.bash_aliases.local
 
 # Begin commands for ONLY interactive shells
 [[ $- != *i* ]] && return
@@ -84,6 +60,8 @@ function rdcd() {
 [ -f ~/.drush/drush.prompt.sh ] && source ~/.drush/drush.prompt.sh
 
 
-# Added by Encore-Dev-Scripts
-[ -f /Users/garrett/Sites/Encore-Dev-Scripts/completion.bash ] && source /Users/garrett/Sites/Encore-Dev-Scripts/completion.bash
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
+
+# Added by Encore-Dev-Scripts
+[ -f ~/Encore-Dev-Scripts/completion.bash ] && source ~/Encore-Dev-Scripts/completion.bash
