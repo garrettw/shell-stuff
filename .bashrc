@@ -29,6 +29,9 @@ case "$TERM" in
     xterm-256color) color_prompt=yes;;
 esac
 
+# Requires Git 2.22.0+
+# On Mac, this requires Catalina if you rely on the version supplied by XCode Command Line Tools.
+# It will fail silently otherwise.
 function gitsegment() {
     cmdout="$(git branch --show-current 2> /dev/null)"
     if [ -n "$cmdout" ]; then
@@ -65,3 +68,13 @@ PS1="\[$(tput setaf 1)\]\u\[$(tput sgr0)\]@\[$(tput setaf 2)\]\h\[$(tput sgr0)\]
 
 # Added by Encore-Dev-Scripts
 [ -f ~/Encore-Dev-Scripts/completion.bash ] && source ~/Encore-Dev-Scripts/completion.bash
+
+
+# See https://rtyley.github.io/bfg-repo-cleaner/
+[ -f "${HOME}/bfg.jar" ] && alias bfg='java -jar ~/bfg.jar'
+
+[ -f "${HOME}/.iterm2_shell_integration.bash" ] && source "${HOME}/.iterm2_shell_integration.bash"
+
+# MacPorts Installer addition on 2018-03-12_at_10:13:46: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
